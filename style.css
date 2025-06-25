@@ -1,4 +1,3 @@
-/* bodyもhtmlも高さ100%にして余白も消す */
 html, body {
   margin: 0;
   padding: 0;
@@ -6,13 +5,12 @@ html, body {
   background: #111;
   color: #eee;
   font-family: 'Courier New', monospace;
-  overflow: hidden; /* 横スクロールとか消す */
+  overflow: hidden;
 }
 
-/* #appを画面全体に */
 #app {
   background: rgba(10, 10, 10, 0.85);
-  border: none; /* 枠線なしに */
+  border: none;
   border-radius: 0;
   box-shadow: none;
   color: #eee;
@@ -25,7 +23,15 @@ html, body {
   box-sizing: border-box;
 }
 
-/* 出力部分は余白なく画面の大部分 */
+#header {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  user-select: none;
+  text-align: center;
+  flex-shrink: 0;
+}
+
 #output {
   background: rgba(0, 0, 0, 0.7);
   border: none;
@@ -40,7 +46,6 @@ html, body {
   outline: none;
 }
 
-/* フォームは横幅いっぱいで配置 */
 #cmdForm {
   display: flex;
   margin-top: 12px;
@@ -51,8 +56,7 @@ html, body {
   border-top: 2px solid #444;
 }
 
-/* セレクトとボタンをフル幅寄りに */
-#cmdSelect, #citySelect {
+#citySelect {
   font-family: monospace;
   font-size: 1.1rem;
   padding: 8px 12px;
@@ -63,8 +67,7 @@ html, body {
   box-shadow: inset 0 0 8px #000;
   border-radius: 0;
   cursor: pointer;
-  flex-grow: 1;
-  max-width: 200px; /* 最大幅調整 */
+  max-width: 180px;
 }
 
 #cmdForm button {
@@ -85,43 +88,18 @@ html, body {
   border-color: #0f0;
 }
 
-/* コマンド候補は画面幅いっぱいにセンター配置 */
-#cmdCandidates {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.cmdCandidate {
-  background: #222;
-  border: 1px solid #555;
-  color: #eee;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-family: monospace;
-  font-weight: bold;
-  border-radius: 0;
-  user-select: none;
-  transition: background 0.3s, border-color 0.3s;
-  flex-grow: 1;
-  max-width: 120px;
+#infoArea {
+  margin-top: 8px;
+  font-size: 0.8rem;
   text-align: center;
-}
-
-.cmdCandidate:hover {
-  background: #444;
-  border-color: #0f0;
-}
-
-/* ヘッダーは上部に固定 */
-#header {
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
   user-select: none;
-  text-align: center;
-  flex-shrink: 0;
+}
+
+#infoArea a {
+  color: #6cf;
+  text-decoration: none;
+}
+
+#infoArea a:hover {
+  text-decoration: underline;
 }
