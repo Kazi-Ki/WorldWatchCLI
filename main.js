@@ -1,8 +1,7 @@
 const outputEl = document.getElementById('output');
 const cmdForm = document.getElementById('cmdForm');
-const cmdSelect = document.getElementById('cmdSelect');
+const cmdInput = document.getElementById('cmdInput');
 const citySelect = document.getElementById('citySelect');
-const candidates = document.querySelectorAll('.cmdCandidate');
 
 function printOutput(text, isCommand = false) {
   outputEl.textContent += (isCommand ? '> ' : '') + text + '\n';
@@ -51,10 +50,17 @@ async function tzCommand(timezone) {
 
 cmdForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const cmd = cmdSelect.value;
+  const input = cmdInput.value.trim();
   const city = citySelect.value;
 
-  if (cmd === 'help') {
+  if (!input) {
+    printOutput('⚠️ コマンドを入力してください。');
+    return;
+  }
+
+  const [cmd, ...args] = input.split(' ');
+
+  if (cmd.toLowerCase() === 'help') {
     printOutput('使えるコマンド一覧:\n time [都市名]\n tz [都市名]\n help');
     return;
   }
@@ -64,7 +70,7 @@ cmdForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  switch (cmd) {
+  switch (cmd.toLowerCase()) {
     case 'time':
       await timeCommand(city);
       break;
@@ -74,12 +80,6 @@ cmdForm.addEventListener('submit', async (e) => {
     default:
       printOutput(`⚠️ 不明なコマンド: ${cmd}\n「help」と入力するとコマンド一覧が表示されます。`);
   }
-});
 
-// コマンド候補ボタンをクリックしたらセレクトを変更してフォーカス
-candidates.forEach(button => {
-  button.addEventListener('click', () => {
-    cmdSelect.value = button.dataset.cmd;
-    cmdSelect.focus();
-  });
+  cmdInput.value = '';
 });
