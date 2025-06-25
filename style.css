@@ -1,0 +1,87 @@
+body {
+  margin: 0; padding: 0;
+  background: #111;
+  color: #0f0;
+  font-family: 'Courier New', Courier, monospace;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 95vw;
+  max-width: 600px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #0f0;
+  border-radius: 6px;
+  background: #000;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+#header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+  user-select: none;
+}
+
+#output {
+  flex: 1;
+  background: #000;
+  border: 1px solid #0f0;
+  padding: 10px;
+  font-size: 1rem;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  outline: none;
+}
+
+#cmdForm {
+  display: flex;
+  margin-top: 10px;
+}
+
+#cmdInput {
+  flex: 1;
+  font-family: monospace;
+  font-size: 1.1rem;
+  padding: 8px;
+  background: #111;
+  border: 1px solid #0f0;
+  color: #0f0;
+  outline: none;
+}
+
+#cmdInput::placeholder {
+  color: #055005;
+}
+
+#cmdForm button {
+  background: #0f0;
+  color: #000;
+  border: none;
+  padding: 0 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#cmdForm button:hover {
+  background: #4caf50;
+}
+
+#infoArea {
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: #0f0;
+}
+
+#infoArea a {
+  color: #0f0;
+  text-decoration: underline;
+}
