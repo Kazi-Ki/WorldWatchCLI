@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WorldWatchCLI - Time Demo</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <div id="header">WorldWatchCLI - Time Demo</div>
+  <div id="output" tabindex="0" aria-live="polite"></div>
+
+  <form id="cmdForm" autocomplete="off">
+    <input type="text" id="cmdInput" placeholder="例: time Asia/Tokyo" autofocus autocomplete="off" spellcheck="false" />
+    <button type="submit">送信</button>
+  </form>
+
+  <div id="infoArea">
+    <small>都市名は <a href="http://worldtimeapi.org/api/timezone" target="_blank" rel="noopener noreferrer">WorldTimeAPI の一覧</a> から選んでね。</small>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
