@@ -1,8 +1,8 @@
 body {
   margin: 0; padding: 0;
   background: #111;
-  color: #0f0;
-  font-family: 'Courier New', Courier, monospace;
+  color: #eee;
+  font-family: 'Courier New', monospace;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,78 +10,102 @@ body {
 }
 
 #app {
-  width: 95vw;
-  max-width: 600px;
-  height: 90vh;
+  background: rgba(10, 10, 10, 0.85);
+  border: 2px solid #555;
+  border-radius: 0;
+  box-shadow: 0 0 15px #222 inset;
+  color: #eee;
+  font-family: 'Courier New', monospace;
   display: flex;
   flex-direction: column;
-  border: 2px solid #0f0;
-  border-radius: 6px;
-  background: #000;
-  padding: 12px;
+  width: 90vw;
+  max-width: 800px;
+  height: 90vh;
+  padding: 20px;
   box-sizing: border-box;
 }
 
 #header {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 10px;
-  text-align: center;
   user-select: none;
+  text-align: center;
 }
 
 #output {
-  flex: 1;
-  background: #000;
-  border: 1px solid #0f0;
-  padding: 10px;
-  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  flex-grow: 1;
+  padding: 12px;
   overflow-y: auto;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #eee;
   white-space: pre-wrap;
+  border-radius: 4px;
   outline: none;
 }
 
 #cmdForm {
   display: flex;
-  margin-top: 10px;
+  margin-top: 12px;
+  border-top: 2px solid #444;
+  padding-top: 12px;
+  gap: 10px;
+  align-items: center;
 }
 
-#cmdInput {
-  flex: 1;
+#cmdSelect, #citySelect {
   font-family: monospace;
   font-size: 1.1rem;
-  padding: 8px;
+  padding: 8px 12px;
   background: #111;
-  border: 1px solid #0f0;
-  color: #0f0;
+  border: none;
+  color: #eee;
   outline: none;
-}
-
-#cmdInput::placeholder {
-  color: #055005;
+  box-shadow: inset 0 0 8px #000;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 #cmdForm button {
-  background: #0f0;
-  color: #000;
-  border: none;
-  padding: 0 15px;
+  background: #222;
+  color: #eee;
+  border: 1px solid #555;
+  padding: 8px 20px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  border-radius: 0;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 #cmdForm button:hover {
-  background: #4caf50;
+  background: #444;
+  border-color: #0f0;
 }
 
-#infoArea {
-  margin-top: 12px;
-  font-size: 0.8rem;
-  color: #0f0;
+#cmdCandidates {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
-#infoArea a {
-  color: #0f0;
-  text-decoration: underline;
+.cmdCandidate {
+  background: #222;
+  border: 1px solid #555;
+  color: #eee;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: bold;
+  border-radius: 0;
+  user-select: none;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.cmdCandidate:hover {
+  background: #444;
+  border-color: #0f0;
 }
