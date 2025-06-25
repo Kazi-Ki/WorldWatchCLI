@@ -3,21 +3,44 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>WorldWatchCLI - Time Demo</title>
+<title>WorldWatchCLI - コマンド＋都市プルダウン対応</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div id="app">
-  <div id="header">WorldWatchCLI - Time Demo</div>
+<div id="app" role="main" aria-label="WorldWatchCLI">
+  <div id="header">WorldWatchCLI - コマンド＋都市プルダウン対応</div>
   <div id="output" tabindex="0" aria-live="polite"></div>
 
-  <form id="cmdForm" autocomplete="off">
-    <input type="text" id="cmdInput" placeholder="例: time Asia/Tokyo" autofocus autocomplete="off" spellcheck="false" />
-    <button type="submit">送信</button>
+  <form id="cmdForm" autocomplete="off" role="search">
+    <select id="cmdSelect" aria-label="コマンド選択">
+      <option value="time">time</option>
+      <option value="tz">tz</option>
+      <option value="help">help</option>
+    </select>
+
+    <select id="citySelect" aria-label="都市選択">
+      <option value="" disabled selected>都市を選んでね</option>
+      <option value="Asia/Tokyo">Tokyo</option>
+      <option value="Europe/London">London</option>
+      <option value="America/New_York">New York</option>
+      <option value="Europe/Paris">Paris</option>
+      <option value="Asia/Shanghai">Shanghai</option>
+      <option value="Australia/Sydney">Sydney</option>
+      <option value="Africa/Cairo">Cairo</option>
+      <!-- 必要に応じてもっと増やしてね -->
+    </select>
+
+    <button type="submit" aria-label="コマンド送信">送信</button>
   </form>
 
+  <div id="cmdCandidates" aria-label="コマンド候補" role="list">
+    <button type="button" class="cmdCandidate" data-cmd="time">time</button>
+    <button type="button" class="cmdCandidate" data-cmd="tz">tz</button>
+    <button type="button" class="cmdCandidate" data-cmd="help">help</button>
+  </div>
+
   <div id="infoArea">
-    <small>都市名は <a href="http://worldtimeapi.org/api/timezone" target="_blank" rel="noopener noreferrer">WorldTimeAPI の一覧</a> から選んでね。</small>
+    <small>都市一覧は <a href="http://worldtimeapi.org/api/timezone" target="_blank" rel="noopener noreferrer">WorldTimeAPI の一覧</a> から。</small>
   </div>
 </div>
 
