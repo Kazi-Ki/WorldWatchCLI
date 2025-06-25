@@ -1,14 +1,12 @@
 const outputEl = document.getElementById('output');
 const cmdForm = document.getElementById('cmdForm');
-const cmdInput = document.getElementById('cmdInput');
+const cmdSelect = document.getElementById('cmdSelect');
+const citySelect = document.getElementById('citySelect');
+const candidates = document.querySelectorAll('.cmdCandidate');
 
 function printOutput(text, isCommand = false) {
   outputEl.textContent += (isCommand ? '> ' : '') + text + '\n';
   outputEl.scrollTop = outputEl.scrollHeight;
-}
-
-function clearOutput() {
-  outputEl.textContent = '';
 }
 
 function formatDateTime(datetimeStr) {
@@ -17,7 +15,7 @@ function formatDateTime(datetimeStr) {
 }
 
 async function fetchTimeZoneData(timezone) {
-  const url = `http://worldtimeapi.org/api/timezone/${encodeURIComponent(timezone)}`;
+  const url = `https://worldtimeapi.org/api/timezone/${encodeURIComponent(timezone)}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error('指定した都市の情報が見つかりませんでした。');
   return await res.json();
@@ -53,26 +51,35 @@ async function tzCommand(timezone) {
 
 cmdForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const input = cmdInput.value.trim();
-  if (!input) return;
-  const [cmd, ...args] = input.split(' ');
-  if (args.length === 0) {
-    printOutput(`⚠️ 使い方: ${cmd} [都市名]`);
-    cmdInput.value = '';
+  const cmd = cmdSelect.value;
+  const city = citySelect.value;
+
+  if (cmd === 'help') {
+    printOutput('使えるコマンド一覧:\n time [都市名]\n tz [都市名]\n help');
     return;
   }
-  switch (cmd.toLowerCase()) {
+
+  if (!city) {
+    printOutput('⚠️ 都市を選んでください。');
+    return;
+  }
+
+  switch (cmd) {
     case 'time':
-      await timeCommand(args.join(' '));
+      await timeCommand(city);
       break;
     case 'tz':
-      await tzCommand(args.join(' '));
-      break;
-    case 'help':
-      printOutput('使えるコマンド一覧:\n time [都市名]\n tz [都市名]\n help');
+      await tzCommand(city);
       break;
     default:
-      printOutput(`⚠️ 不明なコマンド: ${cmd}`);
+      printOutput(`⚠️ 不明なコマンド: ${cmd}\n「help」と入力するとコマンド一覧が表示されます。`);
   }
-  cmdInput.value = '';
+});
+
+// コマンド候補ボタンをクリックしたらセレクトを変更してフォーカス
+candidates.forEach(button => {
+  button.addEventListener('click', () => {
+    cmdSelect.value = button.dataset.cmd;
+    cmdSelect.focus();
+  });
 });
